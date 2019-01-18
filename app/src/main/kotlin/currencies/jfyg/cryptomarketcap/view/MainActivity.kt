@@ -1,7 +1,8 @@
-package currencies.jfyg.cryptomarketcap
+package currencies.jfyg.cryptomarketcap.view
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import currencies.jfyg.cryptomarketcap.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -9,4 +10,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
 }
