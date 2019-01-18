@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
 
         setupCurrenciesRecyclerView()
 
+        val currenciesJson = resources.openRawResource(R.raw.currencies)
+                .bufferedReader().use { it.readText() }
+        val items = dataRepositoryImpl.getCurrencies(currenciesJson)
+        currenciesAdapter.currencies = items
     }
 
     private fun setupCurrenciesRecyclerView() {
