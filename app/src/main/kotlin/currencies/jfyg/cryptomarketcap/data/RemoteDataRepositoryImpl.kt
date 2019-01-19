@@ -3,10 +3,8 @@ package currencies.jfyg.cryptomarketcap.data
 import com.google.gson.Gson
 import currencies.jfyg.cryptomarketcap.model.Currency
 
-class DataRepositoryImpl(private val gson: Gson) : DataRepository {
-
+class RemoteDataRepositoryImpl() : DataRepository {
     override fun getCurrencies(jsonString: String): List<Currency> {
-        return gson.fromJson(jsonString, Array<Currency>::class.java).toList()
+        TODO("eventually add remote datasource") //To change body of created functions use File | Settings | File Templates.
     }
-
 }
