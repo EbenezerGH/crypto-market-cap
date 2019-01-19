@@ -3,9 +3,9 @@ package currencies.jfyg.cryptomarketcap.data
 import com.google.gson.Gson
 import currencies.jfyg.cryptomarketcap.model.Currency
 
-class DataRepositoryImpl(private val gson: Gson) {
+class DataRepositoryImpl(private val gson: Gson) : DataRepository {
 
-    fun getCurrencies(jsonString: String): List<Currency> {
+    override fun getCurrencies(jsonString: String): List<Currency> {
         return gson.fromJson(jsonString, Array<Currency>::class.java).toList()
     }
 
