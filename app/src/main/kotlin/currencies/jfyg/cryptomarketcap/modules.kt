@@ -19,10 +19,11 @@ val applicationModule = module {
     factory<DataRepository>("local") { LocalDataRepositoryImpl(get()) }
     factory<DataRepository>("remote") { RemoteDataRepositoryImpl() }
     factory { DataRepositoryFactory(get("local"), get("remote")) }
-
 }
 
 val browseModule = module("browse") {
     factory { CurrenciesAdapter() }
-    viewModel { CurrenciesViewModel(get()) }
+
+    // can easily add multiple parameters here
+    viewModel { (jsonString: String) -> CurrenciesViewModel(get(), jsonString) }
 }
