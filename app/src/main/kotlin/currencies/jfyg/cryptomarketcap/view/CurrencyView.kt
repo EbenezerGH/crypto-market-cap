@@ -1,7 +1,6 @@
 package currencies.jfyg.cryptomarketcap.view
 
 import android.content.Context
-import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -28,8 +27,7 @@ class CurrencyView @JvmOverloads constructor(
         tv_symbol.text = currency.symbol
 
         setOnClickListener {
-            urlHelper.launchUrl(context, Uri.parse("https://coinmarketcap.com/currencies/${currency.slug}"))
+            urlHelper.launchCurrencyUrl(context, currency.slug)
         }
     }
-
 }
