@@ -9,6 +9,9 @@ import currencies.jfyg.cryptomarketcap.view.adapter.CurrenciesAdapter
 import currencies.jfyg.cryptomarketcap.viewmodel.CurrenciesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
+import org.koin.android.scope.ext.android.bindScope
+import org.koin.android.scope.ext.android.getOrCreateScope
+import org.koin.android.scope.ext.android.getScope
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        bindScope(getOrCreateScope("browse"))
         setupCurrenciesRecyclerView()
 
         currenciesViewModel.observerCurrencies().observe(this, Observer {
@@ -30,6 +34,11 @@ class MainActivity : AppCompatActivity() {
                 .bufferedReader().use { it.readText() }
 
         currenciesViewModel.retrieveCurrencies(currenciesJson)
+    }
+
+    override fun onDestroy() {
+        getScope("browse").close()
+        super.onDestroy()
     }
 
     private fun setupCurrenciesRecyclerView() {
