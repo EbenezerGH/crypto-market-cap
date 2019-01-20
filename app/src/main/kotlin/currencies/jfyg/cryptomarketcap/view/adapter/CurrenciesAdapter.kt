@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import currencies.jfyg.cryptomarketcap.model.Currency
 import currencies.jfyg.cryptomarketcap.R
+import currencies.jfyg.cryptomarketcap.view.CurrencyView
 
 class CurrenciesAdapter : RecyclerView.Adapter<CurrenciesAdapter.ViewHolder>() {
 
@@ -22,14 +22,11 @@ class CurrenciesAdapter : RecyclerView.Adapter<CurrenciesAdapter.ViewHolder>() {
             currencies.count()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val currency = currencies[position]
-        holder.nameText.text = currency.name
-        holder.symbolText.text = currency.symbol
+        holder.currencyView.setCurrency(currencies[position])
     }
 
     inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val nameText: TextView = v.findViewById(R.id.tv_name)
-        val symbolText: TextView = v.findViewById(R.id.tv_symbol)
+        val currencyView: CurrencyView = v.findViewById(R.id.view_currency)
     }
 
 }
